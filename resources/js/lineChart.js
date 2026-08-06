@@ -1,18 +1,26 @@
 import { mergedOptionsWithJsonConfig } from './helpers'
 
 const lineChart = () => {
-    return {
-        chart: null,
+    // Deliberately a closure variable rather than a property on the returned object.
+    // Anything on that object lives in Alpine's reactive graph, which on a Livewire root
+    // also carries $wire, and $wire is a Proxy whose unknown properties become server side
+    // method calls. An ApexCharts instance in there gets its config serialised, the
+    // serialiser reaches $wire, asks it for toJSON, and Livewire sends the browser off to
+    // call a toJSON() method that no component has.
+    let chart = null
 
+    return {
         init() {
             setTimeout(() => {
-                this.drawChart(this.$wire)
+                this.drawChart()
             }, 0)
         },
 
-        drawChart(component) {
-            if (this.chart) {
-                this.chart.destroy()
+        drawChart() {
+            const component = this.$wire
+
+            if (chart) {
+                chart.destroy()
             }
 
             const title = component.get('lineChartModel.title');
@@ -110,8 +118,8 @@ const lineChart = () => {
                 },
             };
 
-            this.chart = new ApexCharts(this.$refs.container, mergedOptionsWithJsonConfig(options, jsonConfig));
-            this.chart.render();
+            chart = new ApexCharts(this.$refs.container, mergedOptionsWithJsonConfig(options, jsonConfig));
+            chart.render();
         }
     }
 }
