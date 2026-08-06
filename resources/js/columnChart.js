@@ -41,6 +41,15 @@ const columnChart = () => {
             }]
 
             const options = {
+                // ApexCharts draws nothing at all for an empty series, and a pie or donut has no
+                // axes to fall back on, so the card renders as blank white space with only its
+                // title. Say so instead.
+                noData: {
+                    text: 'No data available',
+                    align: 'center',
+                    verticalAlign: 'middle',
+                },
+
                 series: series,
 
                 chart: {
