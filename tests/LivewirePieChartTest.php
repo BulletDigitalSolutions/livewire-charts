@@ -5,6 +5,7 @@ namespace Asantibanez\LivewireCharts\Tests;
 use Asantibanez\LivewireCharts\Charts\LivewirePieChart;
 use Livewire\Features\SupportTesting\Testable;
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 
 class LivewirePieChartTest extends TestCase
 {
@@ -13,7 +14,7 @@ class LivewirePieChartTest extends TestCase
         return Livewire::test(LivewirePieChart::class);
     }
 
-    /** @test */
+    #[Test]
     public function can_build_component()
     {
         //Act
@@ -23,7 +24,7 @@ class LivewirePieChartTest extends TestCase
         $this->assertNotNull($component);
     }
 
-    /** @test */
+    #[Test]
     public function should_emit_event_if_present()
     {
         //Arrange

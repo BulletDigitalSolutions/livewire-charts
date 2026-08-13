@@ -5,6 +5,7 @@ namespace Asantibanez\LivewireCharts\Tests;
 use Asantibanez\LivewireCharts\Charts\LivewireRadarChart;
 use Livewire\Features\SupportTesting\Testable;
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 
 class LivewireRadarChartTest extends TestCase
 {
@@ -13,7 +14,7 @@ class LivewireRadarChartTest extends TestCase
         return Livewire::test(LivewireRadarChart::class);
     }
 
-    /** @test */
+    #[Test]
     public function can_build_component()
     {
         //Act

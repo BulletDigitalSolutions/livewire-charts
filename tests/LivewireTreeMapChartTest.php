@@ -5,6 +5,7 @@ namespace Asantibanez\LivewireCharts\Tests;
 use Asantibanez\LivewireCharts\Charts\LivewireTreeMapChart;
 use Livewire\Features\SupportTesting\Testable;
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 
 class LivewireTreeMapChartTest extends TestCase
 {
@@ -13,7 +14,7 @@ class LivewireTreeMapChartTest extends TestCase
         return Livewire::test(LivewireTreeMapChart::class);
     }
 
-    /** @test */
+    #[Test]
     public function can_build_component()
     {
         //Act
@@ -23,7 +24,7 @@ class LivewireTreeMapChartTest extends TestCase
         $this->assertNotNull($component);
     }
 
-    /** @test */
+    #[Test]
     public function should_emit_event_if_present()
     {
         //Arrange
